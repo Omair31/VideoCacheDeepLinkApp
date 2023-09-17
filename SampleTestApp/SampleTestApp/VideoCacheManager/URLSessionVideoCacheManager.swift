@@ -19,7 +19,6 @@ class URLSessionVideoCacheManager: VideoCacheManager {
 
     init(cache: Cache, cacheDirectoryName: String, fileStoreManager: FileStoreManager) {
         cacheDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent(cacheDirectoryName)
-        //self.cache = URLCache(memoryCapacity: 20 * 1024 * 1024, diskCapacity: 100 * 1024 * 1024, diskPath: cacheDirectory.path)
         self.cache = cache
         self.fileStoreManager = fileStoreManager
     }
