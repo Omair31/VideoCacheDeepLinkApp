@@ -69,7 +69,7 @@ class ViewController: UIViewController {
         ])
     }
     
-    @objc func fetchVideo() {
+    @objc fileprivate func fetchVideo() {
         fetchButton.isEnabled = false
         activityIndicator.startAnimating()
         videoCacheManager.getVideo(with: URL(string: "https://www.pexels.com/download/video/18122212/?fps=29.97&h=640&w=360")!) { result in
@@ -90,5 +90,4 @@ class ViewController: UIViewController {
             }
         }
     }
-    
 }
