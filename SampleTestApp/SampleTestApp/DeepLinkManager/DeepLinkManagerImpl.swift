@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum Host: String {
+    case web3Auth = "web3auth.com"
+    case twilio = "twilio.com"
+}
+
 class DeepLinkManagerImpl: DeepLinkManagerProtocol {
     
     private let router: Router
@@ -16,30 +21,29 @@ class DeepLinkManagerImpl: DeepLinkManagerProtocol {
     }
 
     func handleDeepLink(_ url: URL) {
-        guard let host = url.host else {
+        guard let host = url.host, let hostType = Host(rawValue: host) else {
+            showDefaultView()
             return
         }
 
-        switch host {
-        case "example.com":
-            handleExampleDeepLink(url)
-        case "anotherlink.com":
-            handleAnotherExampleLinkDeepLink(url)
-        default:
-            showDefaultView()
+        switch hostType {
+        case .web3Auth:
+            handleWeb3AuthFlow(url)
+        case .twilio:
+            handleUserProfileFlow(url)
         }
     }
 
-    private func handleExampleDeepLink(_ url: URL) {
+    private func handleWeb3AuthFlow(_ url: URL) {
         //let parameters = url.queryParameters
-        // let productID = parameters["productID"]
-        // navigateToProductDetail(productID)
+        // let authId = parameters["authId"]
+        // router.navigateToAuthScreen(authId)
     }
 
-    private func handleAnotherExampleLinkDeepLink(_ url: URL) {
+    private func handleUserProfileFlow(_ url: URL) {
         //let parameters = url.queryParameters
-        // let articleID = parameters["articleID"]
-        // navigateToArticleDetail(articleID)
+        // let userId = parameters["userId"]
+        // navigateToUserProfile(userId)
     }
 
     private func showDefaultView() {
