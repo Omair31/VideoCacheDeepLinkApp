@@ -26,7 +26,16 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        videoCacheManager.getVideo(with: URL(string: "https://www.pexels.com/download/video/7565438/?fps=25.0&h=640&w=360")!) { result in
+        let button = UIButton(frame: CGRect(x: 40, y: 40, width: 100, height: 100))
+        button.setTitle("Fetch Video", for: .normal)
+        view.addSubview(button)
+        button.backgroundColor = .yellow
+        button.setTitleColor(.blue, for: .normal)
+        button.addTarget(self, action: #selector(fetchVideo), for: .touchUpInside)
+    }
+    
+    @objc func fetchVideo() {
+        videoCacheManager.getVideo(with: URL(string: "https://www.pexels.com/download/video/7565438/")!) { result in
             switch result {
             case .success(let fileURL):
                 if let fileURL {
@@ -41,7 +50,6 @@ class ViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
-        // Do any additional setup after loading the view.
     }
     
 }
