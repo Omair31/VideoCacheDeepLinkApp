@@ -61,10 +61,7 @@ class URLSessionVideoCacheManager: VideoCacheManager {
                     print(error.localizedDescription)
                     completion(.failure(error))
                 }
-                // Create a unique file name for the cached video
-                let fileName = UUID().uuidString
-                let fileURL = self.cacheDirectory.appendingPathComponent(fileName)
-                self.fileStoreManager.handleFileManagement(tempFileURL: tempFileURL, newFileURL: fileURL, completion: completion)
+                self.fileStoreManager.handleFileManagement(tempFileURL: tempFileURL, newFileURL: self.cacheDirectory, completion: completion)
             } else {
                 completion(.failure(FileError.notFound))
             }

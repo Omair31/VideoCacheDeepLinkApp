@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DefaultFileStoreManager {
+class DefaultFileStoreManager: FileStoreManager {
     
     let fileManager: FileManager = .default
     
