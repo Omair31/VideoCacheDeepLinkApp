@@ -14,12 +14,14 @@ class URLSessionVideoCacheManager: VideoCacheManager {
     
     private let cacheDirectory: URL
     let cache: Cache
+    let fileStoreManager: FileStoreManager
     var downloadTasks = [URL: DownloadTask]()
 
-    init(cache: Cache, cacheDirectoryName: String) {
+    init(cache: Cache, cacheDirectoryName: String, fileStoreManager: FileStoreManager) {
         cacheDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent(cacheDirectoryName)
         //self.cache = URLCache(memoryCapacity: 20 * 1024 * 1024, diskCapacity: 100 * 1024 * 1024, diskPath: cacheDirectory.path)
         self.cache = cache
+        self.fileStoreManager = fileStoreManager
     }
 
     // Fetch a video from cache or download it if not cached
@@ -39,38 +41,30 @@ class URLSessionVideoCacheManager: VideoCacheManager {
             // A download task is already in progress for this URL
             return
         }
-
+        
         let downloadTask = URLSession.shared.downloadTask(with: url) { (tempFileURL, response, error) in
             defer {
                 self.downloadTasks[url] = nil
             }
-
+            
             if let error = error {
                 completion(.failure(error))
                 return
             }
-
-            if let tempFileURL = tempFileURL {
-                // Save the video data to cache
+            
+            if let tempFileURL, let response {
                 do {
                     let data = try Data(contentsOf: tempFileURL)
-                    let cachedResponse = CachedURLResponse(response: response!, data: data)
+                    let cachedResponse = CachedURLResponse(response: response, data: data)
                     self.cache.storeCachedResponse(cachedResponse, for: URLRequest(url: url))
                 } catch let error {
                     print(error.localizedDescription)
                     completion(.failure(error))
                 }
-                
                 // Create a unique file name for the cached video
                 let fileName = UUID().uuidString
                 let fileURL = self.cacheDirectory.appendingPathComponent(fileName)
-
-                do {
-                    try FileManager.default.moveItem(at: tempFileURL, to: fileURL)
-                    completion(.success(fileURL))
-                } catch {
-                    completion(.failure(error))
-                }
+                self.fileStoreManager.handleFileManagement(tempFileURL: tempFileURL, newFileURL: fileURL, completion: completion)
             } else {
                 completion(.failure(FileError.notFound))
             }
@@ -78,6 +72,8 @@ class URLSessionVideoCacheManager: VideoCacheManager {
         downloadTasks[url] = downloadTask
         downloadTask.resume()
     }
+    
+    
 
     // Pause a download task
     func pauseDownload(for url: URL) {

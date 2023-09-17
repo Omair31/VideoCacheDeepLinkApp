@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A6E71CE2AB6E3B500E1A659 /* FileStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6E71CD2AB6E3B500E1A659 /* FileStoreManager.swift */; };
+		8A6E71D02AB6E3E300E1A659 /* DefaultFileStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6E71CF2AB6E3E300E1A659 /* DefaultFileStoreManager.swift */; };
 		8A7D54492AB5F40C00F85703 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7D54482AB5F40C00F85703 /* AppDelegate.swift */; };
 		8A7D544B2AB5F40C00F85703 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7D544A2AB5F40C00F85703 /* SceneDelegate.swift */; };
 		8A7D544D2AB5F40C00F85703 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7D544C2AB5F40C00F85703 /* ViewController.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A6E71CD2AB6E3B500E1A659 /* FileStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStoreManager.swift; sourceTree = "<group>"; };
+		8A6E71CF2AB6E3E300E1A659 /* DefaultFileStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFileStoreManager.swift; sourceTree = "<group>"; };
 		8A7D54452AB5F40C00F85703 /* SampleTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A7D54482AB5F40C00F85703 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A7D544A2AB5F40C00F85703 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +57,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A6E71D12AB6E3F100E1A659 /* FileStoreManager */ = {
+			isa = PBXGroup;
+			children = (
+				8A6E71CD2AB6E3B500E1A659 /* FileStoreManager.swift */,
+				8A6E71CF2AB6E3E300E1A659 /* DefaultFileStoreManager.swift */,
+			);
+			path = FileStoreManager;
+			sourceTree = "<group>";
+		};
 		8A7D543C2AB5F40C00F85703 = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +90,7 @@
 				8A7D544C2AB5F40C00F85703 /* ViewController.swift */,
 				8AB96E242AB62D28009E4089 /* DeepLinkManager */,
 				8AB96E262AB62D57009E4089 /* VideoCacheManager */,
+				8A6E71D12AB6E3F100E1A659 /* FileStoreManager */,
 				8AB96E252AB62D35009E4089 /* Router */,
 				8AB96E232AB62D1D009E4089 /* URL */,
 				8AB96E2B2AB62E9C009E4089 /* Errors */,
@@ -206,11 +220,13 @@
 				8AB96E1E2AB62C41009E4089 /* DeepLinkRouter.swift in Sources */,
 				8A7D544D2AB5F40C00F85703 /* ViewController.swift in Sources */,
 				8A7D54492AB5F40C00F85703 /* AppDelegate.swift in Sources */,
+				8A6E71D02AB6E3E300E1A659 /* DefaultFileStoreManager.swift in Sources */,
 				8A7D544B2AB5F40C00F85703 /* SceneDelegate.swift in Sources */,
 				8AB96E2A2AB62E8D009E4089 /* FileError.swift in Sources */,
 				8AB96E282AB62D8A009E4089 /* DeepLinkManagerProtocol.swift in Sources */,
 				8AB96E222AB62C7A009E4089 /* URL+Extension.swift in Sources */,
 				8AB96E1C2AB62C23009E4089 /* Router.swift in Sources */,
+				8A6E71CE2AB6E3B500E1A659 /* FileStoreManager.swift in Sources */,
 				8AB96E1A2AB62B2F009E4089 /* URLSessionVideoCacheManager.swift in Sources */,
 				8AB96E202AB62C5B009E4089 /* DeepLinkManagerImpl.swift in Sources */,
 			);
