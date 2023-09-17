@@ -15,10 +15,8 @@ class DeepLinkManagerImpl: DeepLinkManagerProtocol {
         self.router = router
     }
 
-    // Handle a deep link URL
     func handleDeepLink(_ url: URL) {
         guard let host = url.host else {
-            // Handle the case where the URL doesn't have a host
             return
         }
 
@@ -33,22 +31,13 @@ class DeepLinkManagerImpl: DeepLinkManagerProtocol {
     }
 
     private func handleExampleDeepLink(_ url: URL) {
-        // Extract any necessary parameters from the URL
         //let parameters = url.queryParameters
-
-        // Perform actions based on the deep link parameters
-        // For example, navigate to a specific view or perform a specific action
-        // Example:
         // let productID = parameters["productID"]
         // navigateToProductDetail(productID)
     }
 
     private func handleAnotherExampleLinkDeepLink(_ url: URL) {
-        // Extract any necessary parameters from the URL
         //let parameters = url.queryParameters
-
-        // Perform actions based on the deep link parameters
-        // Example:
         // let articleID = parameters["articleID"]
         // navigateToArticleDetail(articleID)
     }
