@@ -6,11 +6,11 @@
 //
 
 import UIKit
-
+import AVKit
 
 class ViewController: UIViewController {
     
-    private lazy var cacheDirectoryName = "video-" + UUID().uuidString
+    private lazy var cacheDirectoryName = "video-" + UUID().uuidString + ".mp4"
     
     private lazy var videoCacheManager: any VideoCacheManager = {
        let diskPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent(cacheDirectoryName).path
@@ -30,7 +30,12 @@ class ViewController: UIViewController {
             switch result {
             case .success(let fileURL):
                 if let fileURL {
-                    print(fileURL)
+                    DispatchQueue.main.async {
+                        let playerVC = AVPlayerViewController()
+                        playerVC.player = AVPlayer(url: fileURL)
+                        self.present(playerVC, animated: true)
+                        playerVC.player?.play()
+                    }
                 }
             case .failure(let error):
                 print(error.localizedDescription)
